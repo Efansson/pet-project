@@ -39,7 +39,7 @@ public class Loader
             }
 
 
-
+       // String t;
         //замяукиваем кошку
 
 
@@ -58,5 +58,5 @@ public class Loader
         //кормим кошку и вызываем метод pee()
 
     }
-}
+
 

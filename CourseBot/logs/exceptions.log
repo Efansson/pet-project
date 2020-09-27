@@ -1,0 +1,6 @@
+2020-09-26 12:22:16.766 [Thread-2] ERROR Parser - Упал парсер, нет соединения с сайтом.java.net.UnknownHostException: wwwncy_rates
+2020-09-26 12:26:49.066 [Thread-2] ERROR Parser - Упал парсер, нет соединения с сайтом.java.net.UnknownHostException: www.ncy_rates
+2020-09-27 12:11:09.733 [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Public Key Retrieval is not allowed
+2020-09-27 12:12:48.124 [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Public Key Retrieval is not allowed
+2020-09-27 12:18:58.356 [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper - The server time zone value 'MSK' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration property) to use a more specifc time zone value if you want to utilize time zone support.
+2020-09-27 12:24:16.674 [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper - The server time zone value 'MSK' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration property) to use a more specifc time zone value if you want to utilize time zone support.

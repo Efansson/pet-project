@@ -22,7 +22,7 @@ public class Bot extends TelegramLongPollingBot {
     private String buyingE = hibernate.getBuyingEUR().getValue();
     private String saleE = hibernate.getSaleEUR().getValue();
     private String all = "Курс покупки доллара: " + buyingU + " продажи: " + saleU + "\n" + "Курс покупки евро: " + buyingE + " продажи: " + saleE;
-    private String info = "Разработчик не несёт ответственности за достоверность информации, полученной от данного бота. \nДанные, полученные в данном боте могут отличаться от действительных. \nАктуальные курсы можете уточнить в поддержке Райффайзенбанка, а так же на сайте: raiffeisen.ru \nСоглашаясь с этим условием, напишите в ответ: <Меню>.";
+    private String info = "Разработчик не несёт ответственность за достоверность информации, полученной от данного бота. \nДанные, полученные в этом боте, могут отличаться от действительных. \nАктуальные курсы можете уточнить в поддержке Райффайзенбанка, а так же на сайте: raiffeisen.ru \nСоглашаясь с этими условиями, напишите в ответ: <Меню>.";
 
     ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
 

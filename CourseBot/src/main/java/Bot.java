@@ -10,19 +10,12 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.util.ArrayList;
 
+
 public class Bot extends TelegramLongPollingBot {
     private static final Logger logger = LogManager.getLogger(Hibernate.class);
     private long chat_id;
     protected String lastMessage = "";
 
-
-    Hibernate hibernate = new Hibernate();
-    private String buyingU = hibernate.getBuyingUSD().getValue();
-    private String saleU = hibernate.getSaleUSD().getValue();
-    private String buyingE = hibernate.getBuyingEUR().getValue();
-    private String saleE = hibernate.getSaleEUR().getValue();
-    private String all = "Курс покупки доллара: " + buyingU + " продажи: " + saleU + "\n" + "Курс покупки евро: " + buyingE + " продажи: " + saleE;
-    private String info = "Разработчик не несёт ответственность за достоверность информации, полученной от данного бота. \nДанные, полученные в этом боте, могут отличаться от действительных. \nАктуальные курсы можете уточнить в поддержке Райффайзенбанка, а так же на сайте: raiffeisen.ru \nСоглашаясь с этими условиями, напишите в ответ: <Меню>.";
 
     ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
 
@@ -42,8 +35,9 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
 
-
     public String getMessage ( String msg ) {
+        Renewal renewal = new Renewal();
+
         ArrayList<KeyboardRow> keyboard = new ArrayList<KeyboardRow>();
         KeyboardRow keyboardFirstRow = new KeyboardRow();
         KeyboardRow keyboardSecondRow = new KeyboardRow();
@@ -68,7 +62,7 @@ public class Bot extends TelegramLongPollingBot {
             keyboardFirstRow.add("Меню");
             keyboard.add(keyboardFirstRow);
             replyKeyboardMarkup.setKeyboard(keyboard);
-            return all;
+            return renewal.getAll();
         }
 
         if (msg.equals("Евро")) {
@@ -98,14 +92,14 @@ public class Bot extends TelegramLongPollingBot {
             keyboardFirstRow.add("Меню");
             keyboard.add(keyboardFirstRow);
             replyKeyboardMarkup.setKeyboard(keyboard);
-            return saleU;
+            return renewal.getSaleU();
         }
         if (lastMessage.equals("Доллар") && msg.equals("Покупка")) {
             keyboard.clear();
             keyboardFirstRow.add("Меню");
             keyboard.add(keyboardFirstRow);
             replyKeyboardMarkup.setKeyboard(keyboard);
-            return buyingU;
+            return renewal.getBuyingU();
         }
 
         if (lastMessage.equals("Евро") && msg.equals("Продажа")) {
@@ -113,30 +107,71 @@ public class Bot extends TelegramLongPollingBot {
             keyboardFirstRow.add("Меню");
             keyboard.add(keyboardFirstRow);
             replyKeyboardMarkup.setKeyboard(keyboard);
-            return saleE;
+            return renewal.getSaleE();
         }
         if (lastMessage.equals("Евро") && msg.equals("Покупка")) {
             keyboard.clear();
             keyboardFirstRow.add("Меню");
             keyboard.add(keyboardFirstRow);
             replyKeyboardMarkup.setKeyboard(keyboard);
-            return buyingE;
+            return renewal.getBuyingE();
         }
         if (msg.equals("/start")) {
-            return info;
+            return renewal.getInfo();
         }
 
-        return all;
+        return renewal.getAll();
     }
+
 
     @Override
     public String getBotUsername () {
-        return "Здесь: имя бота";
+        return "Здесь имя бота";
     }
 
     @Override
     public String getBotToken () {
-        return "Тут нужно вписать токен бота";
+        return "Тут токен бота";
     }
+
+}
+
+class Renewal {
+    Hibernate hibernate = new Hibernate();
+
+    private String buyingU = hibernate.getBuyingUSD().getValue();
+    private String saleU = hibernate.getSaleUSD().getValue();
+    private String buyingE = hibernate.getBuyingEUR().getValue();
+    private String saleE = hibernate.getSaleEUR().getValue();
+    private String all = "Курс покупки доллара: " + buyingU + " продажи: " + saleU + "\n" + "Курс покупки евро: " + buyingE + " продажи: " + saleE;
+
+    public String getBuyingU () {
+        return buyingU;
+    }
+
+    public String getSaleU () {
+        return saleU;
+    }
+
+    public String getBuyingE () {
+        return buyingE;
+    }
+
+    public String getSaleE () {
+        return saleE;
+    }
+
+    public String getAll () {
+        return all;
+    }
+
+    public String getInfo () {
+        return info;
+    }
+
+    private String info = "Разработчик не несёт ответственность за достоверность информации, полученной от данного бота. " +
+            "\nДанные, полученные в этом боте, могут отличаться от действительных. " +
+            "\nАктуальные курсы можете уточнить в поддержке Райффайзенбанка, а так же на сайте: raiffeisen.ru " +
+            "\nСоглашаясь с этими условиями, напишите в ответ: <Меню>.";
 
 }
